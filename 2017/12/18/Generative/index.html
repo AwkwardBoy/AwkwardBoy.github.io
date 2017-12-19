@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -14,11 +14,11 @@
 <meta property="og:title" content="Logistic Regression and LDA">
 <meta property="og:url" content="http://yoursite.com/2017/12/18/Generative/index.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
-<meta property="og:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式 $$P(X|Y) = \frac {P(X, Y)}{P(Y)}$$ $">
-<meta property="og:updated_time" content="2017-12-19T15:49:24.003Z">
+<meta property="og:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式   P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P">
+<meta property="og:updated_time" content="2017-12-19T17:00:02.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic Regression and LDA">
-<meta name="twitter:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式 $$P(X|Y) = \frac {P(X, Y)}{P(Y)}$$ $">
+<meta name="twitter:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式   P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P">
   
     <link rel="alternative" href="/atom.xml" title="Keen&#39;s Blog" type="application/atom+xml">
   
@@ -31,7 +31,7 @@
     #container.show {
       background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
-  </style>
+  </style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
   
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-  <div id="container" q-class="show:isCtnShow">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
@@ -157,14 +157,52 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：<br>$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。</p>
-<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>由贝叶斯公式 $$P(X|Y) = \frac {P(X, Y)}{P(Y)}$$ $$P(Y|X)=\frac {P(X,Y)}{P(X)}$$<br>可得，$$P(X|Y)=\frac {P(X)P(Y|X)}{P(Y)}$$<br>由此再回到上述分类问题，我们需要得到的是$P(C_i|X)$，由贝叶斯公式可以得到$P(Y=C_i|X)=\frac {P(X|C_i)P(C_i)} {P(X)}$，其中$P(X)=\sum_i P(X|C_i)P(C_i)$，所以我们只要知道$P(X|C_i),P(C_i)$的概率密度函数，就可以得出分类问题的一个解。其中$P(C<em>i)$可以$\frac {n</em>{C_i}}{N}$来表示，剩下的问题就是如何计算$P(X|C_i)$</p>
+<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>由贝叶斯公式 </p>
+<script type="math/tex; mode=display">
+P(X|Y) = \frac {P(X, Y)}{P(Y)}\\
+P(Y|X)=\frac {P(X,Y)}{P(X)}</script><p>可得，</p>
+<script type="math/tex; mode=display">P(X|Y)=\frac {P(X)P(Y|X)}{P(Y)}</script><p>由此再回到上述分类问题，我们需要得到的是 $P(C_i|X)$，由贝叶斯公式可以得到$P(Y=C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}$，其中$P(X)=\sum_i P(X|C_i)P(C_i)$，所以我们只要知道$P(X|C_i),P(C_i)$的概率密度函数，就可以得出分类问题的一个解。其中$P(C_i)$可以$\frac {n_{C_i}}{N}$来表示，剩下的问题就是如何计算$P(X|C_i)$</p>
 <h3 id="一个定理"><a href="#一个定理" class="headerlink" title="一个定理"></a>一个定理</h3><ol>
 <li>$X \sim F(X)$， $F(X)$是$X$的概率密度函数，F连续<br><br>则$F(X) \sim U(0,1)$</li>
 <li>$R \sim U(0,1) \longrightarrow F^{-1}(R) \sim F$<br><br>由上述两个引理可以推出以下：<br><br>$X \sim F(X) \longrightarrow \Phi^{-1}(F(X)) \sim N(0,1)$， 实际问题中在不知道$X$的具体分布时，可以用经验分布函数$F_n(X)$来代替。<br><br>由此定理，可以将任何分布的样本分布转换成高斯分布。</li>
 </ol>
-<h3 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA(线性判别分析)"></a>LDA(线性判别分析)</h3><p>由上面的定理，我们可以很自然的做出这样的假设$\ X|C_i \sim N(\mu_i, \Sigma )$。为了简化假设，现在我们只考虑一个二分类问题，并且假设$X|C_1 \sim N(\mu_1, \sigma^2), X|C_2 \sim N(\mu_2, \Sigma)$，两个分布共享方差。<br><br>回到一开始的问题，现在我们就有了：<br>$$<br>\begin{align}<br>P(C_1|X) &amp;= \frac {P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)} \<br>&amp;=\frac {1}{1+\frac {P(X|C_2)P(C_2)}{P(X|C_1)P(C_1)}}\<br>&amp;=\frac{1}{1+\exp(-z)}\<br>&amp;=\sigma(z) \<br>\end{align}<br>$$<br>其中，$z = \ln \frac{P(X|C_1)P(C_1)}{P(X|C_2)P(C_2)}=\ln \frac{P(X|C_1)}{P(X|C_2)}+\ln \frac{P(C_1)}{P(C_2)}$，$\ln \frac{P(C_1)}{P(C_2)}=\ln \frac{n_1/N}{n2/N}=\ln \frac{n1}{n2} = Constant$\<br>又，<br>$$<br>P(X|C_1) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp { -\frac{1}{2}(X-\mu_1)^T \Sigma^{-1}(X-\mu_1)}<br>$$<br>$$<br>P(X|C_2) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp { -\frac{1}{2}(X-\mu2)^T \Sigma^{-1}(X-\mu_2)}<br>$$<br>故而，带入化简<br>$$<br>\begin{align}<br>\ln \frac{P(X|C_1)}{P(X|C_2)}&amp;=-\frac 1 2[(X-\mu_1)^T\Sigma^{-1}(X-\mu_1)-(X-\mu_2)^T\Sigma^{-1}(X-\mu_2)]\<br>&amp;=(\mu_1 - \mu_2)^T\Sigma^{-1}X - \frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2 \<br>&amp;=\omega^T X +b<br>\end{align}<br>$$<br>$\omega^T=(\mu_1-\mu_2)^T\Sigma^{-1}, b =  -\frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2$ <br><br>由此结果可见，在此模型中，以后验概率大为分类标准，$C_1, C_2$由$y = \omega^Tx+b$为边界作为判别条件。</p>
-<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>在LDA中，我们假设了$P(X|C_i)\sim N(\mu, \Sigma)$，且又贝叶斯公式得出了$z = \ln \frac{P(X|C_1)P(C1)}{P(X|C_2)P(C2)} = \omega ^T +b $的结论，并得到了LDA模型。如果我们以此做出这样的假设：真实的数据的确是由一条线或者一个超平面分开。再引入上述的贝叶斯公式，我们就可以得到:<br>$$<br>P(C_1|X)=\frac{P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)}=\sigma(z)<br>$$<br>得到了逻辑回归的表达式。</p>
-<h3 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h3><p>二分类的LDA模型中，参数为$\mu1, \mu2, \Sigma$，可以直接通过样本信息进行估计，得到：<br>$$<br>\mu1 = \frac {\sum_{X_i \in C_1}X_i}{n<em>1} \<br>\mu2 = \frac {\sum</em>{X_j \in C_2}X_j}{n_2} \<br>\Sigma = \frac {(X-\mu)^T(X-\mu)}{N-1} \<br>$$<br>而对于逻辑回归模型，参数为$\omega, b$，求解最优的参数解得过程就完全不一样了，用的方法是最大似然估计，此处我们假设$y=0,X\in C_1;y=1, X \in C_2$：<br>$$<br>\begin{align}<br>L(\omega, b) &amp;= \prod_i P(C_i|X_i)^(1-y)P(C_2|X_i)^y \<br>&amp;= \prod P(C_1|X_i)^{(1-y)}P(C_2|X_i)^y<br>\end{align}<br>$$<br>对似然函数取对数可得：<br>$$<br>\begin{align}<br>l(\omega, b) &amp;= \ln L(\omega, b) \<br>&amp;=(1-y)P(C_1|X_i)+yP(C_2|X_i) \<br>&amp;=(1-y) \sigma (z)+y(1- \sigma (z)) \<br>&amp;=(1-y)\sigma (\omega^TX+b)+y(1- \sigma (\omega^TX+b)) \<br>\end{align}<br>$$<br>再将样本带入，使用梯度下降法得到最优的解$\omega^<em>, b^</em>$。</p>
+<h3 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA(线性判别分析)"></a>LDA(线性判别分析)</h3><p>由上面的定理，我们可以很自然的做出这样的假设$X|C_i \sim N(\mu_i, \Sigma )$。为了简化假设，现在我们只考虑一个二分类问题，并且假设$X|C_1 \sim N(\mu_1, \sigma^2), X|C_2 \sim N(\mu_2, \Sigma)$，两个分布共享方差。<br><br>回到一开始的问题，现在我们就有了：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+P(C_1|X) &= \frac {P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)} \\
+&=\frac {1}{1+\frac {P(X|C_2)P(C_2)}{P(X|C_1)P(C_1)}}\\
+&=\frac{1}{1+\exp(-z)}\\
+&=\sigma(z) \\
+\end{align}</script><p>其中，$z = \ln \frac{P(X|C_1)P(C_1)}{P(X|C_2)P(C_2)}=\ln \frac{P(X|C_1)}{P(X|C_2)}+\ln \frac{P(C_1)}{P(C_2)}$，$\ln \frac{P(C_1)}{P(C_2)}=\ln \frac{n_1/N}{n2/N}=\ln \frac{n1}{n2} = Constant$\<br>又，</p>
+<script type="math/tex; mode=display">
+P(X|C_1) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu_1)^T \Sigma^{-1}(X-\mu_1)\}</script><script type="math/tex; mode=display">
+P(X|C_2) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu2)^T \Sigma^{-1}(X-\mu_2)\}</script><p>故而，带入化简</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\ln \frac{P(X|C_1)}{P(X|C_2)}&=-\frac 1 2[(X-\mu_1)^T\Sigma^{-1}(X-\mu_1)-(X-\mu_2)^T\Sigma^{-1}(X-\mu_2)]\\
+&=(\mu_1 - \mu_2)^T\Sigma^{-1}X - \frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2 \\
+&=\omega^T X +b
+\end{align}</script><p>$\omega^T=(\mu_1-\mu_2)^T\Sigma^{-1}, b =  -\frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2$ <br><br>由此结果可见，在此模型中，以后验概率大为分类标准，$C_1, C_2$由$y = \omega^Tx+b$为边界作为判别条件。</p>
+<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>在LDA中，我们假设了$P(X|C_i)\sim N(\mu, \Sigma)$，且又贝叶斯公式得出了$z = \ln \frac{P(X|C_1)P(C1)}{P(X|C_2)P(C2)} = \omega ^T +b $的结论，并得到了LDA模型。如果我们以此做出这样的假设：真实的数据的确是由一条线或者一个超平面分开。再引入上述的贝叶斯公式，我们就可以得到:</p>
+<script type="math/tex; mode=display">
+P(C_1|X)=\frac{P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)}=\sigma(z)</script><p>得到了逻辑回归的表达式。</p>
+<h3 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h3><p>二分类的LDA模型中，参数为$\mu1, \mu2, \Sigma$，可以直接通过样本信息进行估计，得到：</p>
+<script type="math/tex; mode=display">
+\mu1 = \frac {\sum_{X_i \in C_1}X_i}{n_1} \\
+\mu2 = \frac {\sum_{X_j \in C_2}X_j}{n_2} \\
+\Sigma = \frac {(X-\mu)^T(X-\mu)}{N-1} \\</script><p>而对于逻辑回归模型，参数为$\omega, b$，求解最优的参数解得过程就完全不一样了，用的方法是最大似然估计，此处我们假设$y=0,X\in C_1;y=1, X \in C_2$：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+L(\omega, b) &= \prod_i P(C_i|X_i)^(1-y)P(C_2|X_i)^y \\
+&= \prod P(C_1|X_i)^{(1-y)}P(C_2|X_i)^y
+\end{align}</script><p>对似然函数取对数可得：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+l(\omega, b) &= \ln L(\omega, b) \\
+&=(1-y)P(C_1|X_i)+yP(C_2|X_i) \\
+&=(1-y) \sigma (z)+y(1- \sigma (z)) \\
+&=(1-y)\sigma (\omega^TX+b)+y(1- \sigma (\omega ^TX+b)) \\
+\end{align}</script><p>再将样本带入，使用梯度下降法得到最优的解 $\omega, b$。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然，LDA模型和逻辑回归在形式上都有$\sigma(z)=\omega^TX+b$，但是求解过程不一样，最后得到的结果也是不一样的。</p>
 
       
@@ -529,6 +567,6 @@ MathJax.Hub.Queue(function() {
     </div>
 
 </div>
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
