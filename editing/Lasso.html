@@ -6,7 +6,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: statistical learning | Keen&#39;s Blog</title>
+  <title>Tag: Statistical learning | Keen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="线性回归模型当我们的假设模型是线性回归模型时，我们认为自变量和因变量之间的关系是$ Y =\beta_0 + X\beta + \epsilon $，需要给出估计的方程是$ E(Y) =\beta_0 + X\beta$，其中给定的数据样本为$ \mathcal{D}:(x, y) = {(x_i,y_i), i=1,">
 <meta property="og:type" content="website">
@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/editing/Lasso.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="线性回归模型当我们的假设模型是线性回归模型时，我们认为自变量和因变量之间的关系是$ Y =\beta_0 + X\beta + \epsilon $，需要给出估计的方程是$ E(Y) =\beta_0 + X\beta$，其中给定的数据样本为$ \mathcal{D}:(x, y) = {(x_i,y_i), i=1,2,…,n} $，最终我们可以得到的方程的估计为 $ \hat Y =\hat">
-<meta property="og:updated_time" content="2017-12-19T15:30:23.221Z">
+<meta property="og:updated_time" content="2018-01-06T06:23:01.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Variable Selection and Lasso">
 <meta name="twitter:description" content="线性回归模型当我们的假设模型是线性回归模型时，我们认为自变量和因变量之间的关系是$ Y =\beta_0 + X\beta + \epsilon $，需要给出估计的方程是$ E(Y) =\beta_0 + X\beta$，其中给定的数据样本为$ \mathcal{D}:(x, y) = {(x_i,y_i), i=1,2,…,n} $，最终我们可以得到的方程的估计为 $ \hat Y =\hat">
@@ -148,7 +148,7 @@
 
         
         <a href="/editing/Lasso.html" class="archive-article-date">
-  	<time datetime="2017-12-19T15:30:23.221Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-19</time>
+  	<time datetime="2018-01-06T06:23:01.868Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
 </a>
         
       </header>
@@ -284,6 +284,19 @@ loss &= \frac{1}{n} \|y-\hat y\|^2_2 \\
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性回归模型"><span class="toc-number">1.</span> <span class="toc-text">线性回归模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Variance-and-bias"><span class="toc-number">2.</span> <span class="toc-text">Variance and bias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量选择的原因"><span class="toc-number">3.</span> <span class="toc-text">变量选择的原因</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-过拟合"><span class="toc-number">3.1.</span> <span class="toc-text">1. 过拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-维度灾难"><span class="toc-number">3.2.</span> <span class="toc-text">2. 维度灾难</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见的判别量"><span class="toc-number">4.</span> <span class="toc-text">常见的判别量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-AIC"><span class="toc-number">4.1.</span> <span class="toc-text">1. AIC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-BIC"><span class="toc-number">4.2.</span> <span class="toc-text">2. BIC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-adjusted-r-squared"><span class="toc-number">4.3.</span> <span class="toc-text">3. adjusted r squared</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量选择的方法"><span class="toc-number">5.</span> <span class="toc-text">变量选择的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lasso"><span class="toc-number">5.1.</span> <span class="toc-text">Lasso</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -307,7 +320,7 @@ loss &= \frac{1}{n} \|y-\hat y\|^2_2 \\
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Keen
+    		&copy; 2018 Keen
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -395,7 +408,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">statistical learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
               </li>
             
             <div class="clearfix"></div>

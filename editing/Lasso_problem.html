@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Keen&#39;s Blog</title>
+  <title>Tag: Optimization | Keen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="心事浩茫连广宇，于无声处听惊雷">
+  <meta name="description" content="什么是Lasso问题Lasso问题的解解得唯一性">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Keen&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:title" content="Lasso Problem and uniqueness">
+<meta property="og:url" content="http://yoursite.com/editing/Lasso_problem.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
-<meta property="og:description" content="心事浩茫连广宇，于无声处听惊雷">
+<meta property="og:description" content="什么是Lasso问题Lasso问题的解解得唯一性">
+<meta property="og:updated_time" content="2018-01-06T06:37:54.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Keen&#39;s Blog">
-<meta name="twitter:description" content="心事浩茫连广宇，于无声处听惊雷">
+<meta name="twitter:title" content="Lasso Problem and uniqueness">
+<meta name="twitter:description" content="什么是Lasso问题Lasso问题的解解得唯一性">
   
     <link rel="alternative" href="/atom.xml" title="Keen&#39;s Blog" type="application/atom+xml">
   
@@ -134,104 +135,122 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Generative" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/07/Generative/">Logistic Regression and LDA</a>
+    <h1 class="article-title" itemprop="name">
+      Lasso Problem and uniqueness
     </h1>
   
 
         
-        <a href="/2018/01/07/Generative/" class="archive-article-date">
-  	<time datetime="2018-01-07T02:59:22.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+        <a href="/editing/Lasso_problem.html" class="archive-article-date">
+  	<time datetime="2018-01-06T06:37:54.006Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：<br>$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。</p>
-<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>由贝叶斯公式</p>
-<script type="math/tex; mode=display">
-P(X|Y) = \frac {P(X, Y)}{P(Y)}\\
-P(Y|X)=\frac {P(X,Y)}{P(X)}</script><p>可得，</p>
-<script type="math/tex; mode=display">P(X|Y)=\frac {P(X)P(Y|X)}{P(Y)}</script><p>由此再回到上述分类问题，我们需要得到的是 $P(C_i|X)$，由贝叶斯公式可以得到$P(Y=C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}$，其中$P(X)=\sum_i P(X|C_i)P(C_i)$，所以我们只要知道$P(X|C_i),P(C_i)$的概率密度函数，就可以得出分类问题的一个解。其中$P(C_i)$可以$\frac {n_{C_i}}{N}$来表示，剩下的问题就是如何计算$P(X|C_i)$</p>
-<h1 id="一个定理"><a href="#一个定理" class="headerlink" title="一个定理"></a>一个定理</h1><ol>
-<li>$X \sim F(X)$， $F(X)$是$X$的概率密度函数，F连续<br><br>则$F(X) \sim U(0,1)$</li>
-<li>$R \sim U(0,1) \longrightarrow F^{-1}(R) \sim F$<br><br>由上述两个引理可以推出以下：<br><br>$X \sim F(X) \longrightarrow \Phi^{-1}(F(X)) \sim N(0,1)$， 实际问题中在不知道$X$的具体分布时，可以用经验分布函数$F_n(X)$来代替。<br><br>由此定理，可以将任何分布的样本分布转换成高斯分布。</li>
-</ol>
-<h3 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA(线性判别分析)"></a>LDA(线性判别分析)</h3><p>由上面的定理，我们可以很自然的做出这样的假设$X|C_i \sim N(\mu_i, \Sigma )$。为了简化假设，现在我们只考虑一个二分类问题，并且假设$X|C_1 \sim N(\mu_1, \sigma^2), X|C_2 \sim N(\mu_2, \Sigma)$，两个分布共享方差。<br><br>回到一开始的问题，现在我们就有了：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-P(C_1|X) &= \frac {P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)} \\
-&=\frac {1}{1+\frac {P(X|C_2)P(C_2)}{P(X|C_1)P(C_1)}}\\
-&=\frac{1}{1+\exp(-z)}\\
-&=\sigma(z) \\
-\end{align}</script><p>其中，$z = \ln \frac{P(X|C_1)P(C_1)}{P(X|C_2)P(C_2)}=\ln \frac{P(X|C_1)}{P(X|C_2)}+\ln \frac{P(C_1)}{P(C_2)}$，$\ln \frac{P(C_1)}{P(C_2)}=\ln \frac{n_1/N}{n2/N}=\ln \frac{n1}{n2} = Constant.$<br>又，</p>
-<script type="math/tex; mode=display">
-P(X|C_1) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu_1)^T \Sigma^{-1}(X-\mu_1)\}</script><script type="math/tex; mode=display">
-P(X|C_2) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu2)^T \Sigma^{-1}(X-\mu_2)\}</script><p>故而，带入化简</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\ln \frac{P(X|C_1)}{P(X|C_2)}&=-\frac 1 2[(X-\mu_1)^T\Sigma^{-1}(X-\mu_1)-(X-\mu_2)^T\Sigma^{-1}(X-\mu_2)]\\
-&=(\mu_1 - \mu_2)^T\Sigma^{-1}X - \frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2 \\
-&=\omega^T X +b
-\end{align}</script><p>$\omega^T=(\mu_1-\mu_2)^T\Sigma^{-1}, b =  -\frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2$ <br><br>由此结果可见，在此模型中，以后验概率大为分类标准，$C_1, C_2$由$y = \omega^Tx+b$为边界作为判别条件。</p>
-<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>在LDA中，我们假设了$P(X|C_i)\sim N(\mu, \Sigma)$，且又贝叶斯公式得出了$z = \ln \frac{P(X|C_1)P(C1)}{P(X|C_2)P(C2)} = \omega ^TX +b $的结论，并得到了LDA模型。如果我们以此做出这样的假设：真实的数据的确是由一条线或者一个超平面分开。再引入上述的贝叶斯公式，我们就可以得到:</p>
-<script type="math/tex; mode=display">
-P(C_1|X)=\frac{P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)}=\sigma(z)</script><p>得到了逻辑回归的表达式。</p>
-<h3 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h3><p>二分类的LDA模型中，参数为$\mu1, \mu2, \Sigma$，可以直接通过样本信息进行估计，得到：</p>
-<script type="math/tex; mode=display">
-\mu1 = \frac {\sum_{X_i \in C_1}X_i}{n_1} \\
-\mu2 = \frac {\sum_{X_j \in C_2}X_j}{n_2} \\
-\Sigma = \frac {(X-\mu)^T(X-\mu)}{N-1} \\</script><p>而对于逻辑回归模型，参数为$\omega, b$，求解最优的参数解得过程就完全不一样了，用的方法是最大似然估计，此处我们假设$y=0,X\in C_1;y=1, X \in C_2$：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-L(\omega, b) &= \prod_i P(C_1|X_i)^{(1-y_i)}P(C_2|X_i)^{y_i} \\
-&= \prod_i P(C_1|X_i)^{(1-y_i)}P(C_2|X_i)^{y_i}
-\end{align}</script><p>对似然函数取对数可得：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-l(\omega, b) &= \sum_i \ln L(\omega, b) \\
-&=\sum (1-y_i)P(C_1|X_i)+y_iP(C_2|X_i) \\
-&=\sum (1-y_i) \sigma (z)+y_i(1- \sigma (z)) \\
-&=\sum (1-y_i)\sigma (\omega^TX_i+b)+y_i(1- \sigma (\omega ^TX_i+b)) \\
-\end{align}</script><p>再将样本带入，使用梯度下降法得到最优的解 $\omega, b$。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然，LDA模型和逻辑回归在形式上都有$\sigma(z)=\omega^TX+b$，但是求解过程不一样，最后得到的结果也是不一样的。</p>
-
+        <h3 id="什么是Lasso问题"><a href="#什么是Lasso问题" class="headerlink" title="什么是Lasso问题"></a>什么是Lasso问题</h3><h3 id="Lasso问题的解"><a href="#Lasso问题的解" class="headerlink" title="Lasso问题的解"></a>Lasso问题的解</h3><h3 id="解得唯一性"><a href="#解得唯一性" class="headerlink" title="解得唯一性"></a>解得唯一性</h3>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>呼儿将出换美酒，与尔同销万古愁<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Statistical learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/editing/Lasso_problem.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -246,13 +265,32 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Lasso问题"><span class="toc-number">1.</span> <span class="toc-text">什么是Lasso问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lasso问题的解"><span class="toc-number">2.</span> <span class="toc-text">Lasso问题的解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解得唯一性"><span class="toc-number">3.</span> <span class="toc-text">解得唯一性</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
+  
+
   
 
 
@@ -275,10 +313,10 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
