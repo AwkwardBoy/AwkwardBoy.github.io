@@ -197,7 +197,7 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 <script type="math/tex; mode=display">
 \hat \beta = \Phi \dbinom{\hat \alpha_1}{\hat \alpha_2} = (\Phi_1,\Phi_2) \dbinom{\hat \alpha_1}{0} = \Phi_1 \Lambda_1^{-1} \Phi_1'X'y</script><h4 id="PLS-Partial-Least-Squares"><a href="#PLS-Partial-Least-Squares" class="headerlink" title="PLS (Partial Least Squares)"></a>PLS (Partial Least Squares)</h4><p>PLS是一种有监督的方法，PLS 不同于PCA，PLS利用了因变量的信息，每次都进行线性回归来决定信息量大的方向  </p>
 <p>$ Y \sim X \rightarrow Y = X \hat \beta + \epsilon $， 再令：<br>$ \tilde Y = Y \frac{\hat \beta}{|\hat \beta |}, \tilde X = X \frac{\hat \beta}{|\hat \beta |}, 做 \tilde Y \sim \tilde X $<br>直到产生$M$ 个正交的新变量</p>
-<h3 id="高维数据带来的问题s"><a href="#高维数据带来的问题s" class="headerlink" title="高维数据带来的问题ß"></a>高维数据带来的问题ß</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
+<h3 id="高维数据带来的问题"><a href="#高维数据带来的问题" class="headerlink" title="高维数据带来的问题"></a>高维数据带来的问题</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
 <h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>解释性变差，不知道哪个变量拥有最好的解释性，是真正和因变量相关联的变量</p>
 
       
