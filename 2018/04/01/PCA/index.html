@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Logistic Regression and LDA | Keen&#39;s Blog</title>
+  <title>Principal Components Analysis | Keen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶">
-<meta name="keywords" content="Statistical learning">
+  <meta name="description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp">
+<meta name="keywords" content="Statistical Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic Regression and LDA">
-<meta property="og:url" content="http://yoursite.com/2018/01/07/Generative/index.html">
+<meta property="og:title" content="Principal Components Analysis">
+<meta property="og:url" content="http://yoursite.com/2018/04/01/PCA/index.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
-<meta property="og:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式  P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P(">
-<meta property="og:updated_time" content="2018-01-07T02:59:22.091Z">
+<meta property="og:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
+<meta property="og:image" content="http://yoursite.com/2018/04/01/img/documents_imgs/PCA/img1.png">
+<meta property="og:updated_time" content="2018-04-02T08:12:05.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Logistic Regression and LDA">
-<meta name="twitter:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式  P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P(">
+<meta name="twitter:title" content="Principal Components Analysis">
+<meta name="twitter:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/01/img/documents_imgs/PCA/img1.png">
   
     <link rel="alternative" href="/atom.xml" title="Keen&#39;s Blog" type="application/atom+xml">
   
@@ -136,74 +138,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Generative" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-PCA" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Logistic Regression and LDA
+      Principal Components Analysis
     </h1>
   
 
         
-        <a href="/2018/01/07/Generative/" class="archive-article-date">
-  	<time datetime="2018-01-07T02:59:22.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+        <a href="/2018/04/01/PCA/" class="archive-article-date">
+  	<time datetime="2018-04-01T03:53:31.491Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：<br>$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。</p>
-<h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>由贝叶斯公式</p>
-<script type="math/tex; mode=display">
-P(X|Y) = \frac {P(X, Y)}{P(Y)}\\
-P(Y|X)=\frac {P(X,Y)}{P(X)}</script><p>可得，</p>
-<script type="math/tex; mode=display">P(X|Y)=\frac {P(X)P(Y|X)}{P(Y)}</script><p>由此再回到上述分类问题，我们需要得到的是 $P(C_i|X)$，由贝叶斯公式可以得到$P(Y=C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}$，其中$P(X)=\sum_i P(X|C_i)P(C_i)$，所以我们只要知道$P(X|C_i),P(C_i)$的概率密度函数，就可以得出分类问题的一个解。其中$P(C_i)$可以$\frac {n_{C_i}}{N}$来表示，剩下的问题就是如何计算$P(X|C_i)$</p>
-<h1 id="一个定理"><a href="#一个定理" class="headerlink" title="一个定理"></a>一个定理</h1><ol>
-<li>$X \sim F(X)$， $F(X)$是$X$的概率密度函数，F连续<br><br>则$F(X) \sim U(0,1)$</li>
-<li>$R \sim U(0,1) \longrightarrow F^{-1}(R) \sim F$<br><br>由上述两个引理可以推出以下：<br><br>$X \sim F(X) \longrightarrow \Phi^{-1}(F(X)) \sim N(0,1)$， 实际问题中在不知道$X$的具体分布时，可以用经验分布函数$F_n(X)$来代替。<br><br>由此定理，可以将任何分布的样本分布转换成高斯分布。</li>
-</ol>
-<h3 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA(线性判别分析)"></a>LDA(线性判别分析)</h3><p>由上面的定理，我们可以很自然的做出这样的假设$X|C_i \sim N(\mu_i, \Sigma )$。为了简化假设，现在我们只考虑一个二分类问题，并且假设$X|C_1 \sim N(\mu_1, \sigma^2), X|C_2 \sim N(\mu_2, \Sigma)$，两个分布共享方差。<br><br>回到一开始的问题，现在我们就有了：</p>
+        <h3 id="降维方法-Dimension-Reduction-Methods"><a href="#降维方法-Dimension-Reduction-Methods" class="headerlink" title="降维方法(Dimension Reduction Methods)"></a>降维方法(Dimension Reduction Methods)</h3><script type="math/tex; mode=display">Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon</script><p>不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &lt; p$，可表示为:</p>
+<script type="math/tex; mode=display">Z_m = \sum_{j=1}^p \phi_{jm}X_j</script><p>则原问题就转变成:</p>
 <script type="math/tex; mode=display">
 \begin{align}
-P(C_1|X) &= \frac {P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)} \\
-&=\frac {1}{1+\frac {P(X|C_2)P(C_2)}{P(X|C_1)P(C_1)}}\\
-&=\frac{1}{1+\exp(-z)}\\
-&=\sigma(z) \\
-\end{align}</script><p>其中，$z = \ln \frac{P(X|C_1)P(C_1)}{P(X|C_2)P(C_2)}=\ln \frac{P(X|C_1)}{P(X|C_2)}+\ln \frac{P(C_1)}{P(C_2)}$，$\ln \frac{P(C_1)}{P(C_2)}=\ln \frac{n_1/N}{n2/N}=\ln \frac{n1}{n2} = Constant.$<br>又，</p>
+Y & = \theta_0 + \sum_{m=1}^M \theta_m z_im + \epsilon_i \\
+& = \theta_0 + \sum_{m=1}^M \sum_{j=1}^p \theta_m \phi_{jm} x_{ij} + \epsilon_i \\
+& = \sum_{j=1}^p \beta_j x_{ij} \ \ \ (i=1, ...,n ) \\ 
+\end{align}</script><p>此时，$\beta_j = \sum_{m=1}^M \theta_m \phi_{jm}$</p>
+<h3 id="优化角度"><a href="#优化角度" class="headerlink" title="优化角度"></a>优化角度</h3><p>线性回归表示为优化问题: </p>
 <script type="math/tex; mode=display">
-P(X|C_1) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu_1)^T \Sigma^{-1}(X-\mu_1)\}</script><script type="math/tex; mode=display">
-P(X|C_2) = \frac {1}{2\pi^{p/2}|\Sigma|^{1/2}} \exp \{ -\frac{1}{2}(X-\mu2)^T \Sigma^{-1}(X-\mu_2)\}</script><p>故而，带入化简</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\ln \frac{P(X|C_1)}{P(X|C_2)}&=-\frac 1 2[(X-\mu_1)^T\Sigma^{-1}(X-\mu_1)-(X-\mu_2)^T\Sigma^{-1}(X-\mu_2)]\\
-&=(\mu_1 - \mu_2)^T\Sigma^{-1}X - \frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2 \\
-&=\omega^T X +b
-\end{align}</script><p>$\omega^T=(\mu_1-\mu_2)^T\Sigma^{-1}, b =  -\frac 1 2\mu_1^T\Sigma^{-1}\mu_1 + \frac 1 2\mu_2 ^T \Sigma ^{-1}\mu_2$ <br><br>由此结果可见，在此模型中，以后验概率大为分类标准，$C_1, C_2$由$y = \omega^Tx+b$为边界作为判别条件。</p>
-<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p>在LDA中，我们假设了$P(X|C_i)\sim N(\mu, \Sigma)$，且又贝叶斯公式得出了$z = \ln \frac{P(X|C_1)P(C1)}{P(X|C_2)P(C2)} = \omega ^TX +b $的结论，并得到了LDA模型。如果我们以此做出这样的假设：真实的数据的确是由一条线或者一个超平面分开。再引入上述的贝叶斯公式，我们就可以得到:</p>
-<script type="math/tex; mode=display">
-P(C_1|X)=\frac{P(X|C_1)P(C_1)}{P(X|C_1)+P(X|C_2)P(C_2)}=\sigma(z)</script><p>得到了逻辑回归的表达式。</p>
-<h3 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h3><p>二分类的LDA模型中，参数为$\mu1, \mu2, \Sigma$，可以直接通过样本信息进行估计，得到：</p>
-<script type="math/tex; mode=display">
-\mu1 = \frac {\sum_{X_i \in C_1}X_i}{n_1} \\
-\mu2 = \frac {\sum_{X_j \in C_2}X_j}{n_2} \\
-\Sigma = \frac {(X-\mu)^T(X-\mu)}{N-1} \\</script><p>而对于逻辑回归模型，参数为$\omega, b$，求解最优的参数解得过程就完全不一样了，用的方法是最大似然估计，此处我们假设$y=0,X\in C_1;y=1, X \in C_2$：</p>
+\min_\beta \|Y - X\beta\|^2</script><p>Shrinkage Methods(Regularization) 为线性回归加上约束来防止过拟合</p>
 <script type="math/tex; mode=display">
 \begin{align}
-L(\omega, b) &= \prod_i P(C_1|X_i)^{(1-y_i)}P(C_2|X_i)^{y_i} \\
-&= \prod_i P(C_1|X_i)^{(1-y_i)}P(C_2|X_i)^{y_i}
-\end{align}</script><p>对似然函数取对数可得：</p>
+\min_\beta & \|Y - X\beta\|^2 \\
+s.t. & \|B\| \le s \\
+\end{align}</script><p>Dimension Reduction Methods 给参数加上线性约束。</p>
 <script type="math/tex; mode=display">
 \begin{align}
-l(\omega, b) &= \sum_i \ln L(\omega, b) \\
-&=\sum (1-y_i)P(C_1|X_i)+y_iP(C_2|X_i) \\
-&=\sum (1-y_i) \sigma (z)+y_i(1- \sigma (z)) \\
-&=\sum (1-y_i)\sigma (\omega^TX_i+b)+y_i(1- \sigma (\omega ^TX_i+b)) \\
-\end{align}</script><p>再将样本带入，使用梯度下降法得到最优的解 $\omega, b$。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然，LDA模型和逻辑回归在形式上都有$\sigma(z)=\omega^TX+b$，但是求解过程不一样，最后得到的结果也是不一样的。</p>
+\min_\beta & \|Y - X\beta \|^2 \\
+s.t. &\beta = \Phi_{p\times M} \theta & 
+\end{align}</script><p>可以将这两种应对p &gt;&gt; n问题都看成通过对原问题加入假设，压缩了可选参数空间，降低了模型的variance</p>
+<h3 id="如何得到-X-gt-Z-的映射"><a href="#如何得到-X-gt-Z-的映射" class="headerlink" title="如何得到 X -&gt; Z 的映射"></a>如何得到 X -&gt; Z 的映射</h3><p>原则: 尽量去除数据的无信息(或信息冗余)部分，保留信息量大的部分<br>$variance$ 较大的变量被认为拥有更多的信息<br>需要先normalize<br><img src="../img/documents_imgs/PCA/img1.png" alt=""></p>
+<h4 id="PCA-Principal-Components-Analysis"><a href="#PCA-Principal-Components-Analysis" class="headerlink" title="PCA (Principal Components Analysis)"></a>PCA (Principal Components Analysis)</h4><p>PCA是一种无监督的算法，依次选择能够最大化方差的方向，作为新的坐标系<br>$x_i$ 在$n$ 上投影的新的方差可以写为: </p>
+<script type="math/tex; mode=display">
+\begin{align}
+variance & = \frac{1}{N}\sum_{i=1}^N((x_i - \mu)\cdot n)^2 \\
+& = \frac{1}{N} \sum_{i}^{N} \theta_i ^2 \\
+\end{align}</script><p>$x_i$ 在另外一个单位方向向量$n’$ 上投影的方差可以写为:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+variance & = \frac{1}{N}\sum_{i=1}^N((x_i - \mu)\cdot n')^2 \\
+& = \frac{1}{N} \sum_{i}^{N} \theta_i ^2 (n\cdot n') \\
+\end{align}</script><p>可知当$n’ = \pm n$ 时方差能够达到最大<br>所以，对于PCA的另外一种解释为数据点到新的坐标系的距离越近越好，PCA的问题可以写成优化问题</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\max &  \frac{1}{N}\sum_{j=1}^{M}\sum_{i=1}^N((x_i - \mu)\cdot n_j)^2\\
+s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
+\end{align}</script><p>在统计学里面，有主成分的解:<br>设 $\lambda_1 \ge \lambda_2 \dots \ge \lambda_p$ 为 $X’X$ 的特征根，$\phi_1, \phi_2, \dots , \phi_p$ 为对应的特征向量，并将原线性回归模型写作$Y = Z \alpha + e, Z = X\Phi$，并且对于方程的估计有: $ \hat \alpha = \Phi ‘ \beta $, 当存在复共线性的时候可以认为$\lambda_{r+1}, \dots \lambda_{p} \simeq 0$ 则有:  </p>
+<script type="math/tex; mode=display">
+\hat \beta = \Phi \dbinom{\hat \alpha_1}{\hat \alpha_2} = (\Phi_1,\Phi_2) \dbinom{\hat \alpha_1}{0} = \Phi_1 \Lambda_1^{-1} \Phi_1'X'y</script><h4 id="PLS-Partial-Least-Squares"><a href="#PLS-Partial-Least-Squares" class="headerlink" title="PLS (Partial Least Squares)"></a>PLS (Partial Least Squares)</h4><p>PLS是一种有监督的方法，PLS 不同于PCA，PLS利用了因变量的信息，每次都进行线性回归来决定信息量大的方向  </p>
+<p>$ Y \sim X \rightarrow Y = X \hat \beta + \epsilon $， 再令：<br>$ \tilde Y = Y \frac{\hat \beta}{|\hat \beta |}, \tilde X = X \frac{\hat \beta}{|\hat \beta |}, 做 \tilde Y \sim \tilde X $<br>直到产生$M$ 个正交的新变量</p>
+<h3 id="高维数据带来的问题s"><a href="#高维数据带来的问题s" class="headerlink" title="高维数据带来的问题ß"></a>高维数据带来的问题ß</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
+<h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>解释性变差，不知道哪个变量拥有最好的解释性，是真正和因变量相关联的变量</p>
 
       
 
@@ -243,7 +240,7 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Statistical learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Statistical Learning</a>
         		</li>
       		
 		</ul>
@@ -299,7 +296,7 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/01/07/Generative/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/01/PCA/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,15 +310,11 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
   
 <nav id="article-nav">
   
-    <a href="/2018/04/01/PCA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Principal Components Analysis
-        
-      </div>
-    </a>
   
+    <a href="/2018/01/07/Generative/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Logistic Regression and LDA</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -346,7 +339,7 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#分类问题"><span class="toc-number">1.</span> <span class="toc-text">分类问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贝叶斯公式"><span class="toc-number">2.</span> <span class="toc-text">贝叶斯公式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个定理"><span class="toc-number"></span> <span class="toc-text">一个定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LDA-线性判别分析"><span class="toc-number">1.</span> <span class="toc-text">LDA(线性判别分析)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑回归"><span class="toc-number">2.</span> <span class="toc-text">逻辑回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数求解"><span class="toc-number">3.</span> <span class="toc-text">参数求解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#降维方法-Dimension-Reduction-Methods"><span class="toc-number">1.</span> <span class="toc-text">降维方法(Dimension Reduction Methods)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化角度"><span class="toc-number">2.</span> <span class="toc-text">优化角度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何得到-X-gt-Z-的映射"><span class="toc-number">3.</span> <span class="toc-text">如何得到 X -> Z 的映射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PCA-Principal-Components-Analysis"><span class="toc-number">3.1.</span> <span class="toc-text">PCA (Principal Components Analysis)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PLS-Partial-Least-Squares"><span class="toc-number">3.2.</span> <span class="toc-text">PLS (Partial Least Squares)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高维数据带来的问题s"><span class="toc-number">4.</span> <span class="toc-text">高维数据带来的问题ß</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#高variance"><span class="toc-number">4.1.</span> <span class="toc-text">高variance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多重共线性"><span class="toc-number">4.2.</span> <span class="toc-text">多重共线性</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
