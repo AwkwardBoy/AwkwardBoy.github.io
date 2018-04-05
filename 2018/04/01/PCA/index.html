@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
 <meta property="og:image" content="http://yoursite.com/2018/04/01/img/documents_imgs/PCA/img1.png">
-<meta property="og:updated_time" content="2018-04-02T11:39:37.981Z">
+<meta property="og:updated_time" content="2018-04-05T15:19:06.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Principal Components Analysis">
 <meta name="twitter:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
@@ -170,6 +170,7 @@ Y & = \theta_0 + \sum_{m=1}^M \theta_m z_im + \epsilon_i \\
 & = \theta_0 + \sum_{m=1}^M \sum_{j=1}^p \theta_m \phi_{jm} x_{ij} + \epsilon_i \\
 & = \sum_{j=1}^p \beta_j x_{ij} \ \ \ (i=1, ...,n ) \\ 
 \end{align}</script><p>此时，$\beta_j = \sum_{m=1}^M \theta_m \phi_{jm}$</p>
+<a id="more"></a> 
 <h3 id="优化角度"><a href="#优化角度" class="headerlink" title="优化角度"></a>优化角度</h3><p>线性回归表示为优化问题: </p>
 <script type="math/tex; mode=display">
 \min_\beta \|Y - X\beta\|^2</script><p>Shrinkage Methods(Regularization) 为线性回归加上约束来防止过拟合</p>
@@ -433,11 +434,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
               </li>
             
             <div class="clearfix"></div>

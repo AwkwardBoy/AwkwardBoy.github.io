@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/07/Generative/index.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式  P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P(">
-<meta property="og:updated_time" content="2018-01-07T02:59:22.091Z">
+<meta property="og:updated_time" content="2018-04-05T15:19:22.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic Regression and LDA">
 <meta name="twitter:description" content="分类问题在分类问题中，给定实例的所有特征的值来预测实例所属的类别，即：$f(x) \rightarrow y=C_i$，一般来说可以将这个问题转化成预测$y=C_i$的概率问题，并将$y$的类别预测成第$arg_i(P(y=C_i|X=x))$类。所以问题就转化成求$P(Y=C_i|X=x)$的问题。 贝叶斯公式由贝叶斯公式  P(X|Y) = \frac {P(X, Y)}{P(Y)}\\ P(">
@@ -166,6 +166,7 @@
 P(X|Y) = \frac {P(X, Y)}{P(Y)}\\
 P(Y|X)=\frac {P(X,Y)}{P(X)}</script><p>可得，</p>
 <script type="math/tex; mode=display">P(X|Y)=\frac {P(X)P(Y|X)}{P(Y)}</script><p>由此再回到上述分类问题，我们需要得到的是 $P(C_i|X)$，由贝叶斯公式可以得到$P(Y=C_i|X)=\frac{P(X|C_i)P(C_i)}{P(X)}$，其中$P(X)=\sum_i P(X|C_i)P(C_i)$，所以我们只要知道$P(X|C_i),P(C_i)$的概率密度函数，就可以得出分类问题的一个解。其中$P(C_i)$可以$\frac {n_{C_i}}{N}$来表示，剩下的问题就是如何计算$P(X|C_i)$</p>
+<a id="more"></a> 
 <h1 id="一个定理"><a href="#一个定理" class="headerlink" title="一个定理"></a>一个定理</h1><ol>
 <li>$X \sim F(X)$， $F(X)$是$X$的概率密度函数，F连续<br><br>则$F(X) \sim U(0,1)$</li>
 <li>$R \sim U(0,1) \longrightarrow F^{-1}(R) \sim F$<br><br>由上述两个引理可以推出以下：<br><br>$X \sim F(X) \longrightarrow \Phi^{-1}(F(X)) \sim N(0,1)$， 实际问题中在不知道$X$的具体分布时，可以用经验分布函数$F_n(X)$来代替。<br><br>由此定理，可以将任何分布的样本分布转换成高斯分布。</li>
@@ -441,11 +442,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
               </li>
             
             <div class="clearfix"></div>
