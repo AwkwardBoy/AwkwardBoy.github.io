@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
 <meta property="og:image" content="http://yoursite.com/2018/04/01/img/documents_imgs/PCA/img1.png">
-<meta property="og:updated_time" content="2018-04-09T08:01:13.930Z">
+<meta property="og:updated_time" content="2018-04-09T08:03:29.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Principal Components Analysis">
 <meta name="twitter:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
@@ -206,7 +206,7 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 <ul>
 <li>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$  </li>
 <li>step2: 对于$m = 1, 2, …, p$  <ol>
-<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = <x_j^(m)}, y="">$  </x_j^(m)},></li>
+<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = <x_j^{(m)}, y="">$  </x_j^{(m)},></li>
 <li>$\hat \theta_m = <z_m, y=""> / <z_m, z_m="">$  </z_m,></z_m,></li>
 <li>$\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$  </li>
 <li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [<z_m, x_j^{(m-1)}="">/<z_m, z_m="">]z_m, j = 1,2,…,p$</z_m,></z_m,></li>
