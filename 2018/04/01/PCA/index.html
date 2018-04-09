@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
 <meta property="og:image" content="http://yoursite.com/2018/04/01/img/documents_imgs/PCA/img1.png">
-<meta property="og:updated_time" content="2018-04-09T07:48:26.419Z">
+<meta property="og:updated_time" content="2018-04-09T07:57:16.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Principal Components Analysis">
 <meta name="twitter:description" content="降维方法(Dimension Reduction Methods)Y = \beta_0 + \beta_1X_1 + ... + \beta_pX_p + \epsilon不是一个变量挑选的方法，而是找一个原变量$X_1, X_2, …, X_p$的线性替代$Z_1, Z_2, …,Z_M$, 一般来说$M &amp;lt; p$，可表示为: Z_m = \sum_{j=1}^p \phi_{jm}X_">
@@ -203,12 +203,28 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 \hat \beta = \Phi \dbinom{\hat \alpha_1}{\hat \alpha_2} = (\Phi_1,\Phi_2) \dbinom{\hat \alpha_1}{0} = \Phi_1 \Lambda_1^{-1} \Phi_1'X'y</script><p>PCA的一个缺点是，因为是一种无监督方法，求得的$Z$只是$X$的一个好的代表，不能保证$Z$ 对$Y$的解释性。</p>
 <h4 id="PLS-Partial-Least-Squares"><a href="#PLS-Partial-Least-Squares" class="headerlink" title="PLS (Partial Least Squares)"></a>PLS (Partial Least Squares)</h4><p>PLS是一种有监督的方法，PLS<br>不同于PCA，PLS利用了因变量的信息，每次都进行线性回归来决定信息量大的方向<br>$ Y \sim X \rightarrow Y = X \hat \beta + \epsilon $， 再令：<br>$ \tilde Y = Y \frac{\hat \beta}{||\hat \beta ||}, \tilde X = X \frac{\hat \beta}{||\hat \beta ||}, 正交化后做 Y - \tilde Y \sim \tilde X $  </p>
 <p><strong>algorithms:</strong>  </p>
-<blockquote>
-<p>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$<br>step2: 对于$m = 1, 2, …, p$  </p>
-<blockquote>
-<p>(a) $z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}, \hat \phi_{mj} = <x_j^{(m)}, y="">$<br>(b) $\hat \theta_m = <z_m, y="">/ <z_m, z_m="">$<br>(c) $\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$<br>(d) 关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [<z_m, x_j^{(m-1)}="">/<z_m, z_m="">]z_m, j = 1,2,…,p$</z_m,></z_m,></z_m,></z_m,></x_j^{(m)},></p>
-</blockquote>
-</blockquote>
+<ul>
+<li>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$  </li>
+<li>step2: 对于$m = 1, 2, …, p$  <ul>
+<li><ol>
+<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}, \hat \phi_{mj} = <x_j^{(m)}, y="">$  </x_j^{(m)},></li>
+</ol>
+</li>
+<li><ol>
+<li>$\hat \theta_m = <z_m, y="">/ <z_m, z_m="">$  </z_m,></z_m,></li>
+</ol>
+</li>
+<li><ol>
+<li>$\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$  </li>
+</ol>
+</li>
+<li><ol>
+<li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [<z_m, x_j^{(m-1)}="">/<z_m, z_m="">]z_m, j = 1,2,…,p$</z_m,></z_m,></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 <p>直到产生$M$ 个正交的新变量</p>
 <h3 id="高维数据带来的问题"><a href="#高维数据带来的问题" class="headerlink" title="高维数据带来的问题"></a>高维数据带来的问题</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
 <h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>解释性变差，不知道哪个变量拥有最好的解释性，是真正和因变量相关联的变量</p>
