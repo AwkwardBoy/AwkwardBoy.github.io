@@ -204,17 +204,17 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 <ul>
 <li>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$  </li>
 <li>step2: 对于$m = 1, 2, …, p$  <ol>
-<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = \left<x_j^{(m)}, y\right="">$  </x_j^{(m)},></li>
-<li>$\hat \theta_m = \left<z_m, y\right=""> / \left<z_m, z_m\right="">$  </z_m,></z_m,></li>
+<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = \langle x_j^{(m)}, y\rangle$  </li>
+<li>$\hat \theta_m = \langle z_m, y\rangle / \langle z_m, z_m\rangle$  </li>
 <li>$\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$  </li>
-<li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [\left<z_m, x_j^{(m-1)}\right=""> / \left<z_m, z_m\right="">]z_m, j = 1,2,…,p$</z_m,></z_m,></li>
+<li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [\langle z_m, x_j^{(m-1)}\rangle / \langle z_m, z_m \rangle]z_m, j = 1,2,…,p$</li>
 </ol>
 </li>
 </ul>
 <p>直到产生$M$ 个正交的新变量</p>
 <h3 id="高维数据带来的问题"><a href="#高维数据带来的问题" class="headerlink" title="高维数据带来的问题"></a>高维数据带来的问题</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
 <h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>解释性变差，不知道哪个变量拥有最好的解释性，是真正和因变量相关联的变量</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1]: James, G., Witten, D., Hastie, T. and Tibshirani, R., 2013. An introduction to statistical learning (Vol. 112). New York: springer.<br>[2]: Friedman, J., Hastie, T. and Tibshirani, R., 2001. The elements of statistical learning (Vol. 1, pp. 337-387). New York: Springer series in statistics.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1] James, G., Witten, D., Hastie, T. and Tibshirani, R., 2013. An introduction to statistical learning (Vol. 112). New York: springer.<br>[2] Friedman, J., Hastie, T. and Tibshirani, R., 2001. The elements of statistical learning (Vol. 1, pp. 337-387). New York: Springer series in statistics.</p>
 
       
 
@@ -336,6 +336,7 @@ l(\omega, b) &= \sum_i \ln L(\omega, b) \\
 &=\sum (1-y_i)\sigma (\omega^TX_i+b)+y_i(1- \sigma (\omega ^TX_i+b)) \\
 \end{align}</script><p>再将样本带入，使用梯度下降法得到最优的解 $\omega, b$。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然，LDA模型和逻辑回归在形式上都有$\sigma(z)=\omega^TX+b$，但是求解过程不一样，最后得到的结果也是不一样的。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1] James, G., Witten, D., Hastie, T. and Tibshirani, R., 2013. An introduction to statistical learning (Vol. 112). New York: springer.<br>[2] Christopher, M.B., 2006. PATTERN RECOGNITION AND MACHINE LEARNING. Springer-Verlag New York.<br>[2] </p>
 
       
 
