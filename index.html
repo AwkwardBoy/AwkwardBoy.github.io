@@ -199,18 +199,18 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 \end{align}</script><p>在统计学里面，有主成分的解:<br>设 $\lambda_1 \ge \lambda_2 \dots \ge \lambda_p$ 为 $X’X$ 的特征根，$\phi_1, \phi_2, \dots , \phi_p$ 为对应的特征向量，并将原线性回归模型写作$Y = Z \alpha + e, Z = X\Phi$，并且对于方程的估计有: $ \hat \alpha = \Phi ‘ \beta $, 当存在复共线性的时候可以认为$\lambda_{r+1}, \dots \lambda_{p} \simeq 0$ 则有:  </p>
 <script type="math/tex; mode=display">
 \hat \beta = \Phi \dbinom{\hat \alpha_1}{\hat \alpha_2} = (\Phi_1,\Phi_2) \dbinom{\hat \alpha_1}{0} = \Phi_1 \Lambda_1^{-1} \Phi_1'X'y</script><p>PCA的一个缺点是，因为是一种无监督方法，求得的$Z$只是$X$的一个好的代表，不能保证$Z$ 对$Y$的解释性。</p>
-<h4 id="PLS-Partial-Least-Squares"><a href="#PLS-Partial-Least-Squares" class="headerlink" title="PLS (Partial Least Squares)"></a>PLS (Partial Least Squares)</h4><p>PLS是一种有监督的方法，PLS<br>不同于PCA，PLS利用了因变量的信息，每次都进行线性回归来决定信息量大的方向<br>$ Y \sim X \rightarrow Y = X \hat \beta + \epsilon $， 再令：<br>$ \tilde Y = Y \frac{\hat \beta}{|\hat \beta |}, \tilde X = X \frac{\hat \beta}{|\hat \beta |}, 做 \tilde Y \sim \tilde X $  </p>
+<h4 id="PLS-Partial-Least-Squares"><a href="#PLS-Partial-Least-Squares" class="headerlink" title="PLS (Partial Least Squares)"></a>PLS (Partial Least Squares)</h4><p>PLS是一种有监督的方法，PLS<br>不同于PCA，PLS利用了因变量的信息，每次都进行线性回归来决定信息量大的方向<br>$ Y \sim X \rightarrow Y = X \hat \beta + \epsilon $， 再令：<br>$ \tilde Y = Y \frac{\hat \beta}{||\hat \beta ||}, \tilde X = X \frac{\hat \beta}{||\hat \beta ||}, 正交化后做 Y - \tilde Y \sim \tilde X $  </p>
 <p><strong>algorithms:</strong>  </p>
 <blockquote>
-<p>step1: 将X进行标准化为均值为0， 方差为1<br>step2: 对于$m = 1, 2, …, p$  </p>
+<p>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$<br>step2: 对于$m = 1, 2, …, p$  </p>
 <blockquote>
 <p>(a) $z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, 其中 $\hat \phi_{mj} = <x_j^{(m)}, y="">$<br>(b) $\hat \theta_m = <z_m, y="">/ <z_m, z_m="">$<br>(c) $\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$<br>(d) 关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [<z_m, x_j^{(m-1)}="">/<z_m, z_m="">]z_m, j = 1,2,…,p$</z_m,></z_m,></z_m,></z_m,></x_j^{(m)},></p>
 </blockquote>
-<p>step3:  </p>
 </blockquote>
 <p>直到产生$M$ 个正交的新变量</p>
 <h3 id="高维数据带来的问题"><a href="#高维数据带来的问题" class="headerlink" title="高维数据带来的问题"></a>高维数据带来的问题</h3><h4 id="高variance"><a href="#高variance" class="headerlink" title="高variance"></a>高variance</h4><p>数据在训练集上能完美的拟合(残差为0, $R^2$, $AIC$, $BIC$都无法使用来描述拟合效果)， 但是在测试集上的效果非常差，导致overfit</p>
 <h4 id="多重共线性"><a href="#多重共线性" class="headerlink" title="多重共线性"></a>多重共线性</h4><p>解释性变差，不知道哪个变量拥有最好的解释性，是真正和因变量相关联的变量</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1]: James, G., Witten, D., Hastie, T. and Tibshirani, R., 2013. An introduction to statistical learning (Vol. 112). New York: springer.<br>[2]: Friedman, J., Hastie, T. and Tibshirani, R., 2001. The elements of statistical learning (Vol. 1, pp. 337-387). New York: Springer series in statistics.</p>
 
       
 
@@ -483,11 +483,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
               </li>
             
             <div class="clearfix"></div>
