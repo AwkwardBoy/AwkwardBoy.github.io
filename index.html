@@ -204,10 +204,10 @@ s.t. & \|n_j\|_2^2 = 1,  j=1,2, \dots, M \\
 <ul>
 <li>step1: 将X进行标准化为均值为0， 方差为1， 令$\hat y^{(0)} = \bar y, x_j^{(0)} = x_j$  </li>
 <li>step2: 对于$m = 1, 2, …, p$  <ol>
-<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = <x_j^{(m)}, y="">$  </x_j^{(m)},></li>
-<li>$\hat \theta_m = <z_m, y=""> / <z_m, z_m="">$  </z_m,></z_m,></li>
+<li>$z_m = \sum_{j=1}^p \hat \phi_{mj}x_j^{(m-1)}$, $\hat \phi_{mj} = \left<x_j^{(m)}, y\right="">$  </x_j^{(m)},></li>
+<li>$\hat \theta_m = \left<z_m, y\right=""> / \left<z_m, z_m\right="">$  </z_m,></z_m,></li>
 <li>$\hat y^{(m)} = \hat y^{(m-1)} + \hat \theta_m z_m$  </li>
-<li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [<z_m, x_j^{(m-1)}="">/<z_m, z_m="">]z_m, j = 1,2,…,p$</z_m,></z_m,></li>
+<li>关于$z_m$正交化 $x_j ^{(m-1)}$,  $x_j^{(m)} = x_j^{(m-1)} - [\left<z_m, x_j^{(m-1)}\right=""> / \left<z_m, z_m\right="">]z_m, j = 1,2,…,p$</z_m,></z_m,></li>
 </ol>
 </li>
 </ul>
