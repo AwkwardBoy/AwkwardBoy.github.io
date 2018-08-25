@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-09T08:48:21.462Z</updated>
+  <updated>2018-08-23T15:41:36.072Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/08/23/attention/"/>
+    <id>http://yoursite.com/2018/08/23/attention/</id>
+    <published>2018-08-23T14:27:42.630Z</published>
+    <updated>2018-08-23T15:41:36.072Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h1><h2 id="Attention-Definition"><a href="#Attention-Definition" class="headerlink" title="Attention Definition"></a>Attention Definition</h2><script type="math/tex; mode=display">Attention(Q, K, V)</script><h2 id="RNN-Encoder-Decoder"><a href="#RNN-Encoder-Decoder" class="headerlink" title="RNN Encoder-Decoder"></a>RNN Encoder-Decoder</h2><p>input: $x_1, x_2,…, x_{Tx}$ \<br>output: $y_1, y_2,…, y_{Ty}$ \<br>hidden: $h_t = f(x_{t-1}, y_t)$, $h_1, h_2,…, h_{Tx}$</p><h3 id="Bahdanau-ICLR-2015"><a href="#Bahdanau-ICLR-2015" class="headerlink" title="Bahdanau(ICLR, 2015)"></a>Bahdanau(ICLR, 2015)</h3><p><img src="./graph/plot1.jpg" alt=""><br>encoder: biGRU forword</p><script type="math/tex; mode=display">r_i = \sigma(W_re(x_i) + U_rh_{i-1}) \\z_i = \sigma(W_zr(x_i) + U_zh_{i-1}) \\\tilde h_i = tanh(We(x_i) + U[r_i \circ h_{i-1}]) \\h_i = (1-z_i) \circ h_{i-1} + z_i \circ \tilde h_{i-1}</script><p>decoder: align model</p><script type="math/tex; mode=display">r_i = \sigma(W_r e(y_{i-1}) + U_r s_{i-1} + C_r c_i) \\z_i = \sigma(W_z e(y_{i-1}) + U_z s_{i-1} + C_z c_i) \\\tilde s_i = tanh(We(y_{i-1}) + U[r_i \circ s_{i-1}] + C c_i) \\s_i = (1-z_i) \circ s_{i-1} + z_i \circ \tilde s_i \\s_0 = tanh(W_s \overleftarrow{h_1})</script><p>align</p><script type="math/tex; mode=display">\alpha_{ij} = \frac{exp(e_{ij})}{\sum_{k=1}^{T_y} exp(e_{ik})} \\e_{ij} = v_a^T tanh(W_as_{i-1} + U_a h_j) \\c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j \\</script><p>output</p><script type="math/tex; mode=display">p(y_i|s_i, y_{i-1}, c_i) \propto exp(y_i^T W_o t_i) (softmax)\\t_i = [max\{\tilde t_{i, 2j-1}, \tilde t_{i, 2j}\}]_{j=1,...,l} \\\tilde t_i = U_o s_{i-1} + V_o Ee(y_{i-1}) + C_o c_i \\</script><h3 id="Minh-Thang-Luong-2015"><a href="#Minh-Thang-Luong-2015" class="headerlink" title="Minh-Thang Luong(2015)"></a>Minh-Thang Luong(2015)</h3><p><img src="./graph/plot4.jpg" alt=""><br>align</p><script type="math/tex; mode=display">\alpha_{ij} = \frac{exp(e_{ij})}{\sum_{k=1}^T exp(e_{ik})} \\ \  \\e_{ij} = \left \{    \begin{aligned}    & s_i^T h_j \\    & s_i^T W_a h_j \\    & v_a^T tanh(W_a[s_i, h_j])    \end{aligned}\right. \\\ c_i = \sum_{j=1}^{Tx} \alpha_{ij} h_j</script><p>output</p><script type="math/tex; mode=display">\tilde s_t = tanh(W_c[c_t, s_t])\\p(y_t|y_{<t}, x) = softmax(W_s \tilde s_t)</script><h4 id="global"><a href="#global" class="headerlink" title="global"></a>global</h4><p><img src="./graph/plot2.jpg" alt=""></p><h4 id="local"><a href="#local" class="headerlink" title="local"></a>local</h4><p><img src="./graph/plot3.jpg" alt="" title="local attention"></p><h2 id="CNN-RNN"><a href="#CNN-RNN" class="headerlink" title="CNN-RNN"></a>CNN-RNN</h2><p><img src="./graph/plot7.jpg" alt=""></p><p>text Generation</p><script type="math/tex; mode=display">\tilde g_t = \sigma(W_{eg} e(y_{t-1}) + W_{sg} s_{t-1} + W_{g_i} C_t)) \\i_t = \sigma(W_{ei} e(y_{t-1}) + W_{si} s_{t-1} + W_{ci} C_t)) \\f_t = \sigma(W_{ef} e(y_{t-1}) + W_{sf} s_{t-1} + W_{cf} C_t)) \\o_t = \sigma(W_{eo} e(y_{t-1}) + W_{so} s_{t-1} + W_{co} C_t)) \\g_t = f_t \circ g_{t-1} + i_t \circ g_{t} \\s_t = o_t \circ tanh(g_t)</script><p>soft-attention</p><script type="math/tex; mode=display">C_t = \beta_t \sum_j^L \alpha_{tj} * a_j \\\beta_t = sigma(f_\beta (s_{t-1})) \\e_ij = f_att(a_j, s_{i-1}) =  v_a^T tanh(W_a s_{i-1} + U_a a_j)</script><p>hard-attention \<br>one hot weight of attention</p><h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><p><img src="./graph/plot6.jpg" alt=""><br>Dot-Product Attention</p><script type="math/tex; mode=display">Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V</script><p>Multi-Head Attention</p><script type="math/tex; mode=display">MultiHead(Q, K, V) = Concat(head1, head2, ..., head_h)W_O \\head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)\\</script><p><img src="./graph/plot5.jpg" alt=""></p><p>LayerNorm</p><script type="math/tex; mode=display">LayerNorm(x) = x + sublayer(x)</script><p>Feed Forward</p><script type="math/tex; mode=display">FFN(x) = max(0, xW_1 +b_1)W_2 + b_2</script><p>Position Encoding(<a href="http://arxiv.org/abs/1508.07909" target="_blank" rel="noopener">Rico.S, 2016</a>)</p><script type="math/tex; mode=display">PE_{pos, 2i} = sin(pos/10000^{2i/d_{model}}) \\PE_{pos, 2i+1} = cos(pos/10000^{2i/d_{model}})</script><h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p><img src="./graph/plot8.jpg" alt=""><br>recurrent network</p><script type="math/tex; mode=display">H^t = LayerNorm(A^{t-1} + Transition(A^t)) \\A^t = LayerNorm(H^{t-1} + MultiHead(H^{t-1} + p^t)) \\P^t_{pos,2j} = sin(pos/10000^{2j/d}) \oplus sin(t/10000^{2j/d})\\P^t_{pos, 2j+1} = cos(pos/10000^{2j/d}) \oplus cos(t/10000^{2j/d})</script><p>output</p><script type="math/tex; mode=display">p(y_{pos} | y_{[1:pos-1]}, H^T) = soft(OH^T)</script><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] <a href="https://arxiv.org/pdf/1409.0473.pdf" target="_blank" rel="noopener">Neural Machine Translation By Jointly Learning to Align And Translate</a> \<br>[2] <a href="https://arxiv.org/pdf/1508.04025.pdf" target="_blank" rel="noopener">Effective Approaches to Attention-based Neural Machine Translation</a> \<br>[3] <a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener">Attention Is All You Need</a> \<br>[4] <a href="https://arxiv.org/pdf/1502.03044.pdf" target="_blank" rel="noopener">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a> \<br>[5] <a href="https://arxiv.org/pdf/1807.03819.pdf" target="_blank" rel="noopener">Universal Transformers</a> \<br>[6] <a href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener">Neural Machine Translation of Rare Words with Subword Units</a> \<br>[7] <a href="https://arxiv.org/abs/1705.03122" target="_blank" rel="noopener">Convolutional Sequence to Sequence Learning]</a> \<br>[8] <a href="https://arxiv.org/pdf/1607.06450.pdf" target="_blank" rel="noopener">Layer Normalization</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Attention-Mechanism&quot;&gt;&lt;a href=&quot;#Attention-Mechanism&quot; class=&quot;headerlink&quot; title=&quot;Attention Mechanism&quot;&gt;&lt;/a&gt;Attention Mechanism&lt;/h1&gt;&lt;h2 i
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Principal Components Analysis</title>
