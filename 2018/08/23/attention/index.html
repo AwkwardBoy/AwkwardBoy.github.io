@@ -14,19 +14,19 @@
 <meta property="og:url" content="http://yoursite.com/2018/08/23/attention/index.html">
 <meta property="og:site_name" content="Keen&#39;s Blog">
 <meta property="og:description" content="Attention MechanismAttention Definition Attention(Q, K, V)RNN Encoder-Decoderinput: $x_1, x_2,…, x_{Tx}$ \output: $y_1, y_2,…, y_{Ty}$ \hidden: $h_t = f(x_{t-1}, y_t)$, $h_1, h_2,…, h_{Tx}$ Bahdanau(I">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot4.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot2.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot3.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot7.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot6.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot5.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/08/23/attention/graph/plot8.jpg">
-<meta property="og:updated_time" content="2018-08-23T15:41:36.072Z">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot8.jpg">
+<meta property="og:updated_time" content="2018-08-25T12:53:51.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Keen&#39;s Blog">
 <meta name="twitter:description" content="Attention MechanismAttention Definition Attention(Q, K, V)RNN Encoder-Decoderinput: $x_1, x_2,…, x_{Tx}$ \output: $y_1, y_2,…, y_{Ty}$ \hidden: $h_t = f(x_{t-1}, y_t)$, $h_1, h_2,…, h_{Tx}$ Bahdanau(I">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/23/attention/graph/plot1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/23/img/documents_imgs/attention/plot1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Keen&#39;s Blog" type="application/atom+xml">
   
@@ -155,7 +155,7 @@
       
         <h1 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h1><h2 id="Attention-Definition"><a href="#Attention-Definition" class="headerlink" title="Attention Definition"></a>Attention Definition</h2><script type="math/tex; mode=display">
 Attention(Q, K, V)</script><h2 id="RNN-Encoder-Decoder"><a href="#RNN-Encoder-Decoder" class="headerlink" title="RNN Encoder-Decoder"></a>RNN Encoder-Decoder</h2><p>input: $x_1, x_2,…, x_{Tx}$ \<br>output: $y_1, y_2,…, y_{Ty}$ \<br>hidden: $h_t = f(x_{t-1}, y_t)$, $h_1, h_2,…, h_{Tx}$</p>
-<h3 id="Bahdanau-ICLR-2015"><a href="#Bahdanau-ICLR-2015" class="headerlink" title="Bahdanau(ICLR, 2015)"></a>Bahdanau(ICLR, 2015)</h3><p><img src="./graph/plot1.jpg" alt=""><br>encoder: biGRU forword</p>
+<h3 id="Bahdanau-ICLR-2015"><a href="#Bahdanau-ICLR-2015" class="headerlink" title="Bahdanau(ICLR, 2015)"></a>Bahdanau(ICLR, 2015)</h3><p><img src="../img/documents_imgs/attention/plot1.jpg" alt=""><br>encoder: biGRU forword</p>
 <script type="math/tex; mode=display">
 r_i = \sigma(W_re(x_i) + U_rh_{i-1}) \\
 z_i = \sigma(W_zr(x_i) + U_zh_{i-1}) \\
@@ -174,7 +174,7 @@ c_i = \sum_{j=1}^{T_x} \alpha_{ij} h_j \\</script><p>output</p>
 <script type="math/tex; mode=display">
 p(y_i|s_i, y_{i-1}, c_i) \propto exp(y_i^T W_o t_i) (softmax)\\
 t_i = [max\{\tilde t_{i, 2j-1}, \tilde t_{i, 2j}\}]_{j=1,...,l} \\
-\tilde t_i = U_o s_{i-1} + V_o Ee(y_{i-1}) + C_o c_i \\</script><h3 id="Minh-Thang-Luong-2015"><a href="#Minh-Thang-Luong-2015" class="headerlink" title="Minh-Thang Luong(2015)"></a>Minh-Thang Luong(2015)</h3><p><img src="./graph/plot4.jpg" alt=""><br>align</p>
+\tilde t_i = U_o s_{i-1} + V_o Ee(y_{i-1}) + C_o c_i \\</script><h3 id="Minh-Thang-Luong-2015"><a href="#Minh-Thang-Luong-2015" class="headerlink" title="Minh-Thang Luong(2015)"></a>Minh-Thang Luong(2015)</h3><p><img src="../img/documents_imgs/attention/plot4.jpg" alt=""><br>align</p>
 <script type="math/tex; mode=display">
 \alpha_{ij} = \frac{exp(e_{ij})}{\sum_{k=1}^T exp(e_{ik})} \\
  \  \\
@@ -189,8 +189,8 @@ e_{ij} = \left \{
 <script type="math/tex; mode=display">
 \tilde s_t = tanh(W_c[c_t, s_t])\\
 p(y_t|y_{<t}, x) = softmax(W_s \tilde s_t)</script><h4 id="global"><a href="#global" class="headerlink" title="global"></a>global</h4><p><img src="./graph/plot2.jpg" alt=""></p>
-<h4 id="local"><a href="#local" class="headerlink" title="local"></a>local</h4><p><img src="./graph/plot3.jpg" alt="" title="local attention"></p>
-<h2 id="CNN-RNN"><a href="#CNN-RNN" class="headerlink" title="CNN-RNN"></a>CNN-RNN</h2><p><img src="./graph/plot7.jpg" alt=""></p>
+<h4 id="local"><a href="#local" class="headerlink" title="local"></a>local</h4><p><img src="../img/documents_imgs/attention/plot3.jpg" alt="" title="local attention"></p>
+<h2 id="CNN-RNN"><a href="#CNN-RNN" class="headerlink" title="CNN-RNN"></a>CNN-RNN</h2><p><img src="../img/documents_imgs/attention/plot7.jpg" alt=""></p>
 <p>text Generation</p>
 <script type="math/tex; mode=display">
 \tilde g_t = \sigma(W_{eg} e(y_{t-1}) + W_{sg} s_{t-1} + W_{g_i} C_t)) \\
@@ -203,12 +203,12 @@ s_t = o_t \circ tanh(g_t)</script><p>soft-attention</p>
 C_t = \beta_t \sum_j^L \alpha_{tj} * a_j \\
 \beta_t = sigma(f_\beta (s_{t-1})) \\
 e_ij = f_att(a_j, s_{i-1}) =  v_a^T tanh(W_a s_{i-1} + U_a a_j)</script><p>hard-attention \<br>one hot weight of attention</p>
-<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><p><img src="./graph/plot6.jpg" alt=""><br>Dot-Product Attention</p>
+<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><p><img src="../img/documents_imgs/attention/plot6.jpg" alt=""><br>Dot-Product Attention</p>
 <script type="math/tex; mode=display">
 Attention(Q, K, V) = softmax(\frac{QK^T}{\sqrt{d_k}})V</script><p>Multi-Head Attention</p>
 <script type="math/tex; mode=display">
 MultiHead(Q, K, V) = Concat(head1, head2, ..., head_h)W_O \\
-head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)\\</script><p><img src="./graph/plot5.jpg" alt=""></p>
+head_i = Attention(QW_i^Q, KW_i^K, VW_i^V)\\</script><p><img src="../img/documents_imgs/attention/plot5.jpg" alt=""></p>
 <p>LayerNorm</p>
 <script type="math/tex; mode=display">
 LayerNorm(x) = x + sublayer(x)</script><p>Feed Forward</p>
@@ -216,7 +216,7 @@ LayerNorm(x) = x + sublayer(x)</script><p>Feed Forward</p>
 FFN(x) = max(0, xW_1 +b_1)W_2 + b_2</script><p>Position Encoding(<a href="http://arxiv.org/abs/1508.07909" target="_blank" rel="noopener">Rico.S, 2016</a>)</p>
 <script type="math/tex; mode=display">
 PE_{pos, 2i} = sin(pos/10000^{2i/d_{model}}) \\
-PE_{pos, 2i+1} = cos(pos/10000^{2i/d_{model}})</script><h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p><img src="./graph/plot8.jpg" alt=""><br>recurrent network</p>
+PE_{pos, 2i+1} = cos(pos/10000^{2i/d_{model}})</script><h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p><img src="../img/documents_imgs/attention/plot8.jpg" alt=""><br>recurrent network</p>
 <script type="math/tex; mode=display">
 H^t = LayerNorm(A^{t-1} + Transition(A^t)) \\
 A^t = LayerNorm(H^{t-1} + MultiHead(H^{t-1} + p^t)) \\
@@ -442,11 +442,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Statistical learning</a>
+                <a href="javascript:void(0)" class="js-tag color1">Statistical Learning</a>
               </li>
             
             <div class="clearfix"></div>
